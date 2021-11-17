@@ -10,7 +10,7 @@
     z-index: 999;
     width: 150px;
     border-radius: 10px;
-    border: solid 10px #880a30;
+    border: solid 10px #f5d72fb9;
     transform: translate(-50%, -50%);
 }
   
@@ -23,7 +23,7 @@
     height: 15px;
     z-index: 999;
     border-radius: 50%;
-    background: #b82525;
+    background: #e73333c0;
     animation-name: loadVideo;
     animation-duration: 2s;
     animation-direction: alternate;

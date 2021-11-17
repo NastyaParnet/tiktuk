@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
-import Loader from "./UI/Loader/Loader";
 import LoadVideo from "./UI/LoadVideo/LoadVideo";
 
 const Post = ({post}) => {
@@ -15,7 +14,6 @@ const Post = ({post}) => {
 
     useEffect(()=>{
         var callback1 = function(entries, observer) {
-            console.log(entries)
             if(entries[0].isIntersecting) setIntersect1(true)
             else setIntersect1(false)
         };
@@ -23,7 +21,6 @@ const Post = ({post}) => {
         observer1.current.observe(play1.current)
 
         var callback2 = function(entries, observer) {
-            console.log(entries)
             if(entries[0].isIntersecting) setIntersect2(true)
             else setIntersect2(false)
         };
@@ -70,13 +67,15 @@ const Post = ({post}) => {
                         </div>
                     </div>
                     <div className='post__player'>
-                        <div ref={play1} className='lert'></div>
                         <div className='post__video'>
+                            <div ref={play1}></div>
                             <video 
                                 controls 
                                 loop='loop'
                                 id={post.id}
                                 onCanPlay={()=>setLoadingVideo(false)}
+                                onWaiting={()=>setLoadingVideo(true)}
+                                onPlaying={()=>setLoadingVideo(false)}
                                 className='post__video__src' 
                                 src={post.videoUrl}
                             />
@@ -84,9 +83,8 @@ const Post = ({post}) => {
                                 ? <LoadVideo/>
                                 : <div></div>
                             }
-                            
+                            <div ref={play2}></div>
                         </div>
-                        <div ref={play2}></div>
                         <div className='post__dopInfo'>
                             <span><i className="fas fa-heart"></i></span>
                             <span>{getNumberLike(post.diggCount)}</span>

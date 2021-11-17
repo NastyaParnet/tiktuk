@@ -2,7 +2,7 @@ import React from "react";
 
 const UserVideo = ({post}) => {
     function getPlayCount(){ 
-        let num = post.stats.playCount          
+        let num = post.diggCount          
         if(num>=1000000){
             return (num/1000000).toFixed(1)+'M'
         }
@@ -18,7 +18,7 @@ const UserVideo = ({post}) => {
                 <video
                     className='user__video__src'
                     id={post.id}
-                    src={post.video.playAddr}
+                    src={post.videoUrl}
                 />
             </div>
             <div className='user__video__count'>

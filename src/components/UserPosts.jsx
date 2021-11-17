@@ -2,7 +2,6 @@ import React from "react";
 import UserVideo from "./UserVideo";
 
 const UserPosts = ({posts}) => {
-    console.log(posts)
     return (
         <div className='user__posts'>
             {posts.map(post => {

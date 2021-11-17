@@ -32,7 +32,6 @@
     transform: rotate(720deg);
   }
 }
-/* :not(:required) hides this rule from IE9 and below */
 .circles:not(:required) {
   position: relative;
   text-indent: -9999px;

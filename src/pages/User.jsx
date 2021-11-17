@@ -22,44 +22,7 @@ Get my app Dollify!
             heartCount:76200000,
         }
     })
-    const [userPosts, setUserPosts] = useState([
-        {
-            id: "6949187520152358149",
-            video: {
-                playAddr: 'https://v39-eu.tiktokcdn.com/691ddb693b18658929381a9a5fc5bccf/6193bb33/video/tos/alisg/tos-alisg-pve-0037c001/449c8bd66c7941a5ba06ef064081e855/?a=1233&br=3502&bt=1751&cd=0%7C0%7C1&ch=0&cr=0&cs=0&cv=1&dr=0&ds=3&er=&ft=wZ~R_F5qkag3-I&l=202111160807380101910650792C0D95BA&lr=tiktok_m&mime_type=video_mp4&net=0&pl=0&qs=0&rc=amttNjU6ZjtmNzMzODczNEApNDhoOTozNWU2NzdkM2Y0ZGdtcTBxcjRvY3JgLS1kMS1zcy5iNDJfMTU2NDMyXjYvNTI6Yw%3D%3D&vl=&vr='
-            },
-            stats: {
-                playCount:1300000
-            }
-        },
-        {
-            id: "6948001993092910341",
-            video: {
-                playAddr: 'https://v39-eu.tiktokcdn.com/691ddb693b18658929381a9a5fc5bccf/6193bb33/video/tos/alisg/tos-alisg-pve-0037c001/449c8bd66c7941a5ba06ef064081e855/?a=1233&br=3502&bt=1751&cd=0%7C0%7C1&ch=0&cr=0&cs=0&cv=1&dr=0&ds=3&er=&ft=wZ~R_F5qkag3-I&l=202111160807380101910650792C0D95BA&lr=tiktok_m&mime_type=video_mp4&net=0&pl=0&qs=0&rc=amttNjU6ZjtmNzMzODczNEApNDhoOTozNWU2NzdkM2Y0ZGdtcTBxcjRvY3JgLS1kMS1zcy5iNDJfMTU2NDMyXjYvNTI6Yw%3D%3D&vl=&vr='
-            },
-            stats: {
-                playCount: 3000000
-            }
-        },
-        {
-            id: "6919527366356225285",
-            video: {
-                playAddr:'https://v39-eu.tiktokcdn.com/691ddb693b18658929381a9a5fc5bccf/6193bb33/video/tos/alisg/tos-alisg-pve-0037c001/449c8bd66c7941a5ba06ef064081e855/?a=1233&br=3502&bt=1751&cd=0%7C0%7C1&ch=0&cr=0&cs=0&cv=1&dr=0&ds=3&er=&ft=wZ~R_F5qkag3-I&l=202111160807380101910650792C0D95BA&lr=tiktok_m&mime_type=video_mp4&net=0&pl=0&qs=0&rc=amttNjU6ZjtmNzMzODczNEApNDhoOTozNWU2NzdkM2Y0ZGdtcTBxcjRvY3JgLS1kMS1zcy5iNDJfMTU2NDMyXjYvNTI6Yw%3D%3D&vl=&vr='
-            },
-            stats: {
-                playCount: 1800000
-            }
-        },
-        {
-            id: "6919527366356225287",
-            video: {
-                playAddr:'https://v39-eu.tiktokcdn.com/691ddb693b18658929381a9a5fc5bccf/6193bb33/video/tos/alisg/tos-alisg-pve-0037c001/449c8bd66c7941a5ba06ef064081e855/?a=1233&br=3502&bt=1751&cd=0%7C0%7C1&ch=0&cr=0&cs=0&cv=1&dr=0&ds=3&er=&ft=wZ~R_F5qkag3-I&l=202111160807380101910650792C0D95BA&lr=tiktok_m&mime_type=video_mp4&net=0&pl=0&qs=0&rc=amttNjU6ZjtmNzMzODczNEApNDhoOTozNWU2NzdkM2Y0ZGdtcTBxcjRvY3JgLS1kMS1zcy5iNDJfMTU2NDMyXjYvNTI6Yw%3D%3D&vl=&vr='
-            },
-            stats: {
-                playCount: 18000000
-            }
-        }
-    ])
+    const [userPosts, setUserPosts] = useState([])
     const [isLoadingInfo, setIsLoadingInfo] = useState(false)
     const [isLoadingPosts, setIsLoadingPosts] = useState(false)
 
@@ -68,21 +31,19 @@ Get my app Dollify!
         const user = await PostService.getUserInfo(params.name)
         setUserInfo(user)
         setIsLoadingInfo(false)
-        console.log(user)
     }
     
     async function getUserPosts(){
         setIsLoadingPosts(true)
         const posts = await PostService.getUserPosts(params.name)
         setUserPosts(posts)
-        console.log(posts)
         setIsLoadingPosts(false)
         
     }
 
     useEffect(()=>{
-        //getUserInfo()
-        //getUserPosts()
+        getUserInfo()
+        getUserPosts()
     }, [])
     
     return (
