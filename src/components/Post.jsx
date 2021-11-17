@@ -2,13 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import LoadVideo from "./UI/LoadVideo/LoadVideo";
 
-const Post = ({post}) => {
+const Post = ({post, isPlayNow, setIsPlayNow}) => {
     const router = useHistory()
     const play1 = useRef()
     const play2 = useRef()
-    const observer1 = useRef()
-    const observer2 = useRef()
     const [loadingVideo, setLoadingVideo] = useState(true)
+    const [isPlay, setIsPlay] = useState(false)
     const [intersect1, setIntersect1] = useState(false)
     const [intersect2, setIntersect2] = useState(false)
 
@@ -17,22 +16,34 @@ const Post = ({post}) => {
             if(entries[0].isIntersecting) setIntersect1(true)
             else setIntersect1(false)
         };
-        observer1.current = new IntersectionObserver(callback1);
-        observer1.current.observe(play1.current)
+        let observer1 = new IntersectionObserver(callback1);
+        observer1.observe(play1.current)
 
         var callback2 = function(entries, observer) {
             if(entries[0].isIntersecting) setIntersect2(true)
             else setIntersect2(false)
         };
-        observer2.current = new IntersectionObserver(callback2);
-        observer2.current.observe(play2.current)
+        let observer2 = new IntersectionObserver(callback2);
+        observer2.observe(play2.current)
     }, [])
 
     useEffect(()=>{
         let video = document.getElementById(post.id)
-        if(intersect1 && intersect2) video.play()
-        else video.pause()
-    }, [intersect1, intersect2])
+        if(intersect1 && intersect2) {
+            if(!isPlayNow) {
+                video.play()
+                setIsPlay(true)
+                setIsPlayNow(true)
+            }
+        }
+        else{
+            if(isPlay){
+                video.pause()
+                setIsPlay(false)
+                setIsPlayNow(false)
+            }
+        }
+    }, [intersect1, intersect2, isPlayNow])
 
     function getNumberLike(num){             
         if(num>=1000000){
