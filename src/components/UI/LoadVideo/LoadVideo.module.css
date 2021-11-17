@@ -1,0 +1,37 @@
+.loadVideo{
+    margin: 1em 0;
+}
+  
+.loadVideo:before{
+    content:'';
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    z-index: 999;
+    width: 150px;
+    border-radius: 10px;
+    border: solid 10px #880a30;
+    transform: translate(-50%, -50%);
+}
+  
+.loadVideo:after{
+    content:'';
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    z-index: 999;
+    border-radius: 50%;
+    background: #b82525;
+    animation-name: loadVideo;
+    animation-duration: 2s;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;    
+    animation-iteration-count: infinite;
+}
+  
+@keyframes loadVideo{
+    0% { transform: translate(-72.5px,-7.5px); }
+    100% { transform: translate(58.5px,-7.5px); }
+} 

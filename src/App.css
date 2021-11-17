@@ -1,38 +1,136 @@
-.App {
-  text-align: center;
+hr{
+  color: rgba(117, 110, 110, 0.322);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.post{
+  margin-left: 10%;
+  margin-right: 40%;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.post__content{
+  display: flex;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.post__avatar{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+}
+.post__header{
+  margin: 5px;
+}
+.post__nickName{
+  font-weight: bold;
+  font-size: 20px;
+}
+.post__player{
+  display: flex;
+  align-items: flex-end;
+}
+.post__video{
+  position: relative;
+}
+.post__video__src{
+  width: 20vw;
+  border-radius: 2%;
+}
+.post__loader{
+  position: absolute;
+  top: 50px;
+  left: 50px
+}
+.post__dopInfo{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: center;
+  margin: 5px;
+}
+
+
+.info{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+.info__header{
+  display: flex;
+}
+.info__avatar{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+.info__uniqueId{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  font-size: 35px;
+  margin: 10px;
+}
+.info__nickname{
+  font-weight: 900px;
+  font-size: 20px;
+  margin: 10px;
+}
+.info__follow{
+  display: flex;
+  justify-content: space-around;
+}
+.info__follow__span{
+  font-weight: 900px;
+  font-size: 20px;
+}
+.info__signature{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.user{
+  position: relative;
+  margin-left: 10%;
+  margin-right: 20%;
+}
+.user__video{
+  position: relative;
+  margin: 1px;
+  width: 22vw;
+}
+.user__video__src{
+  width: 100%;
+}
+.user__video__count{
+  position: absolute;
   color: white;
+  /*width: 100%;
+  bottom: 0;
+  height: 100px;*/
+  left: 20px;
+  bottom: 20px;
+}
+.user__posts{
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media screen and (max-width: 1000px) {
+  .user__video{
+    width: 33vw;
   }
-  to {
-    transform: rotate(360deg);
+  .post{
+    margin-right: 10%;
+  }
+  .post__video__src{
+    width: 40vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .user__video{
+    width: 70vw;
+  }
+  .info__follow{
+    flex-direction: column;
+  }
+  .post{
+    margin: 0;
+  }
+  .post__video__src{
+    width: 60vw;
   }
 }
