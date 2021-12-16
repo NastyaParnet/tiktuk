@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import PostService from '../API/PostService';
 import Post from "../components/Post";
 import Loader from "../components/UI/Loader/Loader";
+import { getNews } from "../redux/actions";
 
 const News = () => {
-    const [news, setNews] = useState([])
-    const [isPlayNow, setIsPlayNow] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
-    async function getNews () {
-        setIsLoading(true)
-        const apiNews = await PostService.getNews()
-        setNews(apiNews)
-        setIsLoading(false)
-    }
-
+    const dispatch = useDispatch()
+    const news = useSelector(state => state.news.news)
+    const isLoading = useSelector(state => state.news.loading)
+    console.log(news, isLoading)
+    
     useEffect(()=>{
-        getNews()
+        dispatch(getNews())
     }, [])
 
     return (
         <div>
             {isLoading
                 ? <Loader/>
-                : news.map( post => <Post post={post} isPlayNow={isPlayNow} setIsPlayNow={setIsPlayNow} key={post.id}/>)
+                : news.map( post => <Post post={post} key={post.id}/>)
             }
         </div>
     )

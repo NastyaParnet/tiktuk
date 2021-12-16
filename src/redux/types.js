@@ -1,0 +1,5 @@
+export const FETCH_NEWS = 'NEWS/FETCH_NEWS'
+export const SHOW_LOADER = 'NEWS/SHOW_LOADER'
+export const HIDE_LOADER = 'NEWS/HIDE_LOADER'
+export const PLAY_NOW_TRUE = 'NEWS/PLAY_NOW_TRUE'
+export const PLAY_NOW_FALSE = 'NEWS/PLAY_NOW_FALSE'

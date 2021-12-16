@@ -1,11 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
+import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import LoadVideo from "./UI/LoadVideo/LoadVideo";
+import {isPlayNowTrue, isPlayNowFalse} from '../redux/actions'
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-const Post = ({post, isPlayNow, setIsPlayNow}) => {
+const Post = ({post}) => {
+    const dispatch = useDispatch()
+    const isPlayNow = useSelector(state => state.news.isPlayNow)
+    
     const router = useHistory()
     const play1 = useRef()
     const play2 = useRef()
+    const [isControlsVideo, setIsControlsVideo] = useState("")
     const [loadingVideo, setLoadingVideo] = useState(true)
     const [isPlay, setIsPlay] = useState(false)
     const [intersect1, setIntersect1] = useState(false)
@@ -33,14 +41,14 @@ const Post = ({post, isPlayNow, setIsPlayNow}) => {
             if(!isPlayNow) {
                 video.play()
                 setIsPlay(true)
-                setIsPlayNow(true)
+                dispatch(isPlayNowTrue())
             }
         }
         else{
             if(isPlay){
                 video.pause()
                 setIsPlay(false)
-                setIsPlayNow(false)
+                dispatch(isPlayNowFalse())
             }
         }
     }, [intersect1, intersect2, isPlayNow])
@@ -53,6 +61,17 @@ const Post = ({post, isPlayNow, setIsPlayNow}) => {
             return (num/1000).toFixed(1)+'K'
         }
         return num
+    }
+
+    function isLoadingVideo(isLoad){
+        if(isLoad){
+            setLoadingVideo(true)
+            setIsControlsVideo("")
+        }
+        else{
+            setLoadingVideo(false)
+            setIsControlsVideo("controls")
+        }
     }
 
     return(
@@ -81,12 +100,12 @@ const Post = ({post, isPlayNow, setIsPlayNow}) => {
                         <div className='post__video'>
                             <div ref={play1}></div>
                             <video 
-                                controls 
+                                controls={isControlsVideo}
                                 loop='loop'
                                 id={post.id}
-                                onCanPlay={()=>setLoadingVideo(false)}
-                                onWaiting={()=>setLoadingVideo(true)}
-                                onPlaying={()=>setLoadingVideo(false)}
+                                onCanPlay={()=>isLoadingVideo(false)}
+                                onWaiting={()=>isLoadingVideo(true)}
+                                onPlaying={()=>isLoadingVideo(false)}
                                 className='post__video__src' 
                                 src={post.videoUrl}
                             />
@@ -109,8 +128,17 @@ const Post = ({post, isPlayNow, setIsPlayNow}) => {
             </div>
             <hr/>
         </div>
-        
     )
 }
+
+/*const mapStateToProps = state => {
+    return {
+        isPlayNow: state.news.isPlayNow
+    }
+}
+
+const mapDispatchToProps = {
+    isPlayNowTrue, isPlayNowFalse
+}*/
 
 export default Post
